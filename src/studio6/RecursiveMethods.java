@@ -12,10 +12,16 @@ public class RecursiveMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
+			double sum = 0;
+			if(n == 0) {
+				return 0;
+			}
+			else {
+				return Math.pow(0.5,n) + geometricSum(n-1);
+			}
 		
-			// FIXME compute the geometric sum for the first n terms recursively
-			return 0;
-		
+			
+
 	}
 
 	/**
@@ -42,8 +48,14 @@ public class RecursiveMethods {
 	 * @return an array with the same data as the input but it reverse order
 	 */
 	public static int[] toReversed(int[] array) {
-		
-			// FIXME create a helper method that can recursively reverse the given array
+			int[] og = array;
+			if(array.length == 0) {
+				return new int[0];
+			}
+			else {
+				
+			}
+			
 			return new int[0];
 		
 	}
@@ -59,8 +71,23 @@ public class RecursiveMethods {
 	 */
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
+		double bound = 5.0;
+		StdDraw.setXscale(-bound,bound);
+		StdDraw.setYscale(-bound,bound);
 		
-		// FIXME
-	}
+		
+		if(radius <= radiusMinimumDrawingThreshold) {
+			StdDraw.show();
+		}
+		else {
+			circlesUponCircles(xCenter-radius, yCenter, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter+radius, yCenter, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter, yCenter + radius, radius/3.0, radiusMinimumDrawingThreshold);
+			circlesUponCircles(xCenter, yCenter - radius, radius/3.0, radiusMinimumDrawingThreshold);
+			
+			StdDraw.circle(xCenter, yCenter, radius);
 
+		}
+
+}
 }
